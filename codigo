@@ -1,0 +1,87 @@
+#include<windows.h>
+#include<stdio.h>
+#include<conio.h>
+
+char  a[80];
+
+void tab()
+{
+     int mat[2][127],f,c,t;
+	 for (f=0;f<2;f++)
+	 {
+		 for(c=0;c<127;c++)//cargamos el vector para luego prguntar
+		 {
+             t=c+1;
+			 if(f==0)
+			 {
+			 mat[f][c]=t;
+			 printf("%d|",mat[f][c]);
+			 }
+			 else
+			 {
+			 mat[f][c]=0;
+			 printf("%d|",mat[f][c]);
+			 }        }
+		 printf("\n");
+	 }
+
+     //*************************************** compara y guarda frecuencia
+
+     int x,n;
+	for(n=0;n<80;n++)
+	{
+		for (x=0;x<127;x++)
+		{
+			if (mat[0][x]==a[n])
+			{
+				mat[1][x]=mat[1][x]+1;
+			}
+		}
+	}
+     //*************************************** imprime la frecuencia de cada diguito
+     for(n=0;n<127;n++)
+	{
+		for (x=0;x<2;x++)
+		{
+            if(mat[1][n]>0)
+            {
+            if(x==0)
+            {
+            printf("%c| ",mat[x][n]);
+            printf("\n");// realiza un salto
+            }
+            else
+            {
+                printf("%d|",mat[x][n]);
+            }
+            }
+        }
+
+    }
+
+     //***************************************
+ }
+
+
+main()
+{
+     int x=0, c=0, l=0, n=0;
+
+     printf("ingreso de la cadena... para terminar presione esc\n\n");
+         for(x=0;x<80;x++)
+          {
+
+          c = getch();  //captura caracter
+          if(c==27)
+                 {
+                  x=80;//preciona esc para salir
+                  printf("termino de ingresar la cadena...\n\n");
+                 }
+          a[x]=c;//guarda caracter en el vector
+          printf("%d  ",a[x]); //imprime la pocicion del vector y muestra el assci
+          printf("%c\n\n",a[x]);//imprime la pocicon del vector y muestra el caracter
+          }
+	  tab();//llamo funcion tab
+      system ("pause");
+}
+
